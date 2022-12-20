@@ -1,0 +1,140 @@
+@import url("https://fonts.googleapis.com/css2?family=Nova+Mono&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+$crater-bg: linear-gradient(
+  145deg,
+  hsla(200, 10%, 90%, 0.25),
+  hsla(200, 10%, 95%, 0.25)
+);
+$crater-shadow: 2px 2px 4px hsla(200, 10%, 25%, 0.25),
+  -2px -2px 4px hsla(200, 10%, 5%, 0.25);
+$star-spacing: 150;
+
+@function randomNum($min, $max) {
+  $rand: random();
+  $randomNum: $min + floor($rand * (($max - $min) + 1));
+  @return $randomNum;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  background-color: hsl(307, 85%, 10%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.planet {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-image: radial-gradient(
+    farthest-corner at 50px 50px,
+    hsl(200, 100%, 95%) 0%,
+    hsl(281, 100%, 65%) 35%,
+    hsl(298, 100%, 45%) 65%,
+    hsl(291, 80%, 27%) 80%
+  );
+  box-shadow: 2px 2px 20px 0px hsla(0, 0%, 70%, 0.7);
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+  margin-left: 20%;
+}
+
+.crater-1,
+.crater-2,
+.crater-3 {
+  aspect-ratio: 1;
+  position: absolute;
+  background: $crater-bg;
+  box-shadow: $crater-shadow;
+}
+
+.crater-1 {
+  width: 30px;
+  top: 3rem;
+  left: 4rem;
+  border-radius: 50%;
+}
+
+.crater-2 {
+  width: 20px;
+  top: 9rem;
+  left: 3rem;
+  border-radius: 10px 7px 10px 9px;
+}
+
+.crater-3 {
+  width: 36px;
+  top: 6.75rem;
+  left: 8.5rem;
+  border-radius: 16px 17px 18px 14px;
+}
+
+.glow {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: absolute;
+  box-shadow: 0px 0px 380px 200px hsla(200, 90%, 65%, 0.2);
+  margin-left: 20%;
+}
+
+.star-parent {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  gap: 0.25rem;
+}
+
+.item {
+  position: relative;
+}
+
+.child {
+  position: absolute;
+  aspect-ratio: 1;
+  background: hsla(0, 0%, 100%, 0.4);
+  border-radius: 50%;
+  animation: twinkle ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  50% {
+    opacity: 0;
+  }
+}
+
+@for $i from 1 through 100 {
+  .star-parent > .item:nth-child(#{$i}) > .child {
+    width: #{randomNum(1, 5)}px;
+    top: #{randomNum(1, $star-spacing)}px;
+    left: #{randomNum(1, $star-spacing)}px;
+    animation-duration: #{randomNum(2, 8)}s;
+  }
+}
+
+.planet-ring {
+  width: 280px;
+  aspect-ratio: 1;
+  position: absolute;
+  border-radius: 50%;
+  perspective: 100px;
+  z-index: 4;
+  transform: rotate3D(1.8, -0.3, -0.3, 85deg);
+  transform-style: preserve-3d;
+  box-shadow: 0px 120px 60px 60px hsla(0, 100%, 97%, 0.75);
+  margin-left: 20%;
+}
