@@ -17,7 +17,6 @@ Projeto 100% responsivo!
 ![menu-mobile](https://user-images.githubusercontent.com/106066785/209353084-c0926ac1-6203-49c9-8689-a97168f415bf.png)
 
 
-
 # :hammer: Projeto em Execução
 
 ![menu-gif](https://user-images.githubusercontent.com/106066785/209353945-b632e768-64fe-47ec-b667-f926eac4ce4f.gif)
